@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--
+    <link rel="icon" href="{% static 'IssueTrackingSystem/images/favicon.png' %}">
+    -->
+	<title>Expense Tracker</title>
+	<link href="{% static 'xpens/css/bootstrap.min.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if latest_expense_list %}
+                    {% for expense in latest_expense_list %}
+                        <tr>
+                            <td class="active"><a href="/xpens/{{ expense.id }}/">{{ expense.name }}</a></td>
+                            <td>{{ expense.amount}}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                <tr colspan="2">
+                    <p>No Expense are available.</p>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+    <script src="{% static 'xpens/js/jquery-1.11.2.min.js' %}"></script>
+    <script src="{% static 'xpens/js/bootstrap.min.js' %}"></script>
+</body>
+</html>
